@@ -13,7 +13,7 @@ let canvasWidth, canvasHeight, fps;
 
 //Default variables for UI elements
 let defaultLineWidth = 0.6;
-let defaultExtruderSpeed = 1;
+let defaultExtruderSpeed = 1.25;
 let defaultBGColor;
 let defaultInitialColor;
 
