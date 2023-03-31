@@ -1,8 +1,5 @@
+This little app animates .gcode files in 3D.
+
 Known bugs:
 
-- Flickering on line edges in 3D mode
-- Performance sucks
-
-Upcoming features:
-
-- Color change
+- Performance is awful
