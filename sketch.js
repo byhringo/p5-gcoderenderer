@@ -137,7 +137,7 @@ function keyPressed() {
   if (key == "r") {
     currentInstruction = 0;
     extruder.reset();
-  } else if (parseInt(key) > 0 && parseInt(key) < 6) {
+  } else if (parseInt(key) > 0 && parseInt(key) < fixedCameras.length + 1) {
     targetCameraAngle = parseInt(key) - 1;
   } else if (key == "h") {
     toggleUI();

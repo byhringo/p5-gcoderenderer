@@ -13,28 +13,34 @@ function setupCameras() {
   newFixedCamera.lookAt(0, 0, 0);
   fixedCameras.push(newFixedCamera);
 
+  //From the side, and slightly above
+  newFixedCamera = createCamera();
+  newFixedCamera.setPosition(0, 750, 450);
+  newFixedCamera.lookAt(0, 0, 100);
+  fixedCameras.push(newFixedCamera);
+
   //Upper Right
   newFixedCamera = createCamera();
   newFixedCamera.setPosition(750, -750, 2000);
-  newFixedCamera.lookAt(0, 0, 0);
+  newFixedCamera.lookAt(0, 0, 100);
   fixedCameras.push(newFixedCamera);
 
   //Lower Right
   newFixedCamera = createCamera();
   newFixedCamera.setPosition(750, 750, 2000);
-  newFixedCamera.lookAt(0, 0, 0);
+  newFixedCamera.lookAt(0, 0, 100);
   fixedCameras.push(newFixedCamera);
 
   //Lower Left
   newFixedCamera = createCamera();
   newFixedCamera.setPosition(-750, 750, 2000);
-  newFixedCamera.lookAt(0, 0, 0);
+  newFixedCamera.lookAt(0, 0, 100);
   fixedCameras.push(newFixedCamera);
 
   //Upper Left
   newFixedCamera = createCamera();
   newFixedCamera.setPosition(-750, -750, 2000);
-  newFixedCamera.lookAt(0, 0, 0);
+  newFixedCamera.lookAt(0, 0, 100);
   fixedCameras.push(newFixedCamera);
 
   //Set up a camera that can be moved around
@@ -80,11 +86,22 @@ function lerpTowardsFixedCamera(time) {
     newCameraPosition.z
   );
 
+  //Get the target cameras lookAt position
+  let targetCameraLookAtPosition = createVector(
+    fixedCameras[targetCameraAngle].centerX,
+    fixedCameras[targetCameraAngle].centerY,
+    fixedCameras[targetCameraAngle].centerZ
+  );
+
+  //Look at the cameras target
+  cam.lookAt(
+    targetCameraLookAtPosition.x,
+    targetCameraLookAtPosition.y,
+    targetCameraLookAtPosition.z
+  );
+
   //If the camera is close enough to the target, stop lerping
   if (p5.Vector.dist(currentCameraPosition, targetCameraPosition) < 5) {
     targetCameraAngle = null;
   }
-
-  //Look at origin
-  cam.lookAt(0, 0, 0);
 }
