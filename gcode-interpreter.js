@@ -8,6 +8,9 @@ class GcodeInterpreter {
     //And should return a positive value if the instruction was executed to completion
     //And 0
     this.instructions = {
+      G0: (params, time) => {
+        return this.instructions.G1(params, time);
+      },
       G1: (params, time) => {
         //Get the X, Y, Z and E parameters
         let x = params.find((param) => param.startsWith("X"));
@@ -34,33 +37,6 @@ class GcodeInterpreter {
         }
         //If there are no coordinates, just return true
         else {
-          return time;
-        }
-      },
-      G1_OLD: (params, time) => {
-        //Get the X, Y, Z and E parameters
-        let x = params.find((param) => param.startsWith("X"));
-        let y = params.find((param) => param.startsWith("Y"));
-        let z = params.find((param) => param.startsWith("Z"));
-        let e = params.find((param) => param.startsWith("E"));
-
-        if (x && y) {
-          //Get the X, Y and Z values (if they exist)
-          x = x && parseFloat(x.substring(1));
-          y = y && parseFloat(y.substring(1));
-          z = z && parseFloat(z.substring(1));
-
-          //If this G1 has an E parameter (and at least 1 coordinate), extrude
-          if (e && (x || y || z)) {
-            //Move the extruder towards the point
-            return extruder.moveTowardsAndPrint(x, y, z, time) > 0;
-          }
-          //If not, just move the nozzle directly to the target
-          else {
-            extruder.moveTo(x, y, z);
-            return time;
-          }
-        } else {
           return time;
         }
       },
