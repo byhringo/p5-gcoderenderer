@@ -157,7 +157,7 @@ function toggleUI() {
     zExpandSlider.show();
     extruderColorPicker.show();
     bgColorPicker.show();
-    exampleButtons.forEach((button) => button.show());
+    exampleButtons.forEach((button) => button.hide());
   }
 }
 
