@@ -124,6 +124,7 @@ let uiHidden = false;
 
 function toggleUI() {
   uiHidden = !uiHidden;
+
   if (uiHidden) {
     gcodeInputLabel.hide();
     speedSliderLabel.hide();
@@ -139,8 +140,6 @@ function toggleUI() {
     zExpandSlider.hide();
     extruderColorPicker.hide();
     bgColorPicker.hide();
-    startLabel.hide();
-    startInput.hide();
     exampleButtons.forEach((button) => button.hide());
   } else {
     gcodeInputLabel.show();
@@ -157,7 +156,7 @@ function toggleUI() {
     zExpandSlider.show();
     extruderColorPicker.show();
     bgColorPicker.show();
-    exampleButtons.forEach((button) => button.hide());
+    exampleButtons.forEach((button) => button.show());
   }
 }
 
